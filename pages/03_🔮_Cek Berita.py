@@ -6,7 +6,7 @@ from sklearn import preprocessing
 from PIL import Image
 import nltk
 from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
+# from nltk.corpus import stopwords
 import re, string
 import requests
 from bs4 import BeautifulSoup
@@ -43,10 +43,10 @@ def remove_single_char(text):
 def word_tokenize_wrapper(text):
   return word_tokenize(text)
 
-list_stopwords = stopwords.words('indonesian')
-list_stopwords = set(list_stopwords)
-def remove_stopwords(words):
-  return [word for word in words if word not in list_stopwords]
+# list_stopwords = stopwords.words('indonesian')
+# list_stopwords = set(list_stopwords)
+# def remove_stopwords(words):
+#   return [word for word in words if word not in list_stopwords]
 
 # LOAD MODEL HOAX & CLICKBAIT CLASSIFICATION
 filename_model_hoax = 'model/Model_Final_Hoax.sav'
@@ -86,7 +86,7 @@ if option == 'Clickbait':
     data_result['Judul'] = data_result['Judul'].apply(remove_whitespace_multi)
     data_result['Judul'] = data_result['Judul'].apply(remove_single_char)
     data_result['Judul'] = data_result['Judul'].apply(word_tokenize_wrapper)
-    data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
+#     data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
     data_result['Judul'] = data_result['Judul'].agg(lambda x: ','.join(map(str, x)))
     y_pred = model_clickbait.predict(tfidf_clickbait.transform(data_result['Judul'].values))
     y_pred_proba = model_clickbait.predict_proba(tfidf_clickbait.transform(data_result['Judul'].values))
@@ -119,7 +119,7 @@ elif option == 'Hoax':
     data_result['Isi'] = data_result['Isi'].apply(remove_whitespace_multi)
     data_result['Isi'] = data_result['Isi'].apply(remove_single_char)
     data_result['Isi'] = data_result['Isi'].apply(word_tokenize_wrapper)
-    data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
+#     data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
     data_result['Isi'] = data_result['Isi'].agg(lambda x: ','.join(map(str, x)))
     y_pred = model_hoax.predict(tfidf_hoax.transform(data_result['Isi'].values))
     y_pred_proba = model_hoax.predict_proba(tfidf_hoax.transform(data_result['Isi'].values))
@@ -172,7 +172,7 @@ else:
             data_result['Judul'] = data_result['Judul'].apply(remove_whitespace_multi)
             data_result['Judul'] = data_result['Judul'].apply(remove_single_char)
             data_result['Judul'] = data_result['Judul'].apply(word_tokenize_wrapper)
-            data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
+#             data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
             data_result['Judul'] = data_result['Judul'].agg(lambda x: ','.join(map(str, x)))
             data_result['Isi'] = data_result['Isi'].str.lower()
             data_result['Isi'] = data_result['Isi'].apply(remove_mention)
@@ -184,7 +184,7 @@ else:
             data_result['Isi'] = data_result['Isi'].apply(remove_whitespace_multi)
             data_result['Isi'] = data_result['Isi'].apply(remove_single_char)
             data_result['Isi'] = data_result['Isi'].apply(word_tokenize_wrapper)
-            data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
+#             data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
             data_result['Isi'] = data_result['Isi'].agg(lambda x: ','.join(map(str, x)))
             y_pred_judul = model_clickbait.predict(tfidf_clickbait.transform(data_result['Isi'].values))
             y_pred_proba_judul = model_clickbait.predict_proba(tfidf_clickbait.transform(data_result['Isi'].values))
@@ -240,7 +240,7 @@ else:
             data_result['Judul'] = data_result['Judul'].apply(remove_whitespace_multi)
             data_result['Judul'] = data_result['Judul'].apply(remove_single_char)
             data_result['Judul'] = data_result['Judul'].apply(word_tokenize_wrapper)
-            data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
+#             data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
             data_result['Judul'] = data_result['Judul'].agg(lambda x: ','.join(map(str, x)))
             data_result['Isi'] = data_result['Isi'].str.lower()
             data_result['Isi'] = data_result['Isi'].apply(remove_mention)
@@ -252,7 +252,7 @@ else:
             data_result['Isi'] = data_result['Isi'].apply(remove_whitespace_multi)
             data_result['Isi'] = data_result['Isi'].apply(remove_single_char)
             data_result['Isi'] = data_result['Isi'].apply(word_tokenize_wrapper)
-            data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
+#             data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
             data_result['Isi'] = data_result['Isi'].agg(lambda x: ','.join(map(str, x)))
             y_pred_judul = model_clickbait.predict(tfidf_clickbait.transform(data_result['Isi'].values))
             y_pred_proba_judul = model_clickbait.predict_proba(tfidf_clickbait.transform(data_result['Isi'].values))
@@ -311,7 +311,7 @@ else:
             data_result['Judul'] = data_result['Judul'].apply(remove_whitespace_multi)
             data_result['Judul'] = data_result['Judul'].apply(remove_single_char)
             data_result['Judul'] = data_result['Judul'].apply(word_tokenize_wrapper)
-            data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
+#             data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
             data_result['Judul'] = data_result['Judul'].agg(lambda x: ','.join(map(str, x)))
             data_result['Isi'] = data_result['Isi'].str.lower()
             data_result['Isi'] = data_result['Isi'].apply(remove_mention)
@@ -323,7 +323,7 @@ else:
             data_result['Isi'] = data_result['Isi'].apply(remove_whitespace_multi)
             data_result['Isi'] = data_result['Isi'].apply(remove_single_char)
             data_result['Isi'] = data_result['Isi'].apply(word_tokenize_wrapper)
-            data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
+#             data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
             data_result['Isi'] = data_result['Isi'].agg(lambda x: ','.join(map(str, x)))
             y_pred_judul = model_clickbait.predict(tfidf_clickbait.transform(data_result['Isi'].values))
             y_pred_proba_judul = model_clickbait.predict_proba(tfidf_clickbait.transform(data_result['Isi'].values))
@@ -381,7 +381,7 @@ else:
             data_result['Judul'] = data_result['Judul'].apply(remove_whitespace_multi)
             data_result['Judul'] = data_result['Judul'].apply(remove_single_char)
             data_result['Judul'] = data_result['Judul'].apply(word_tokenize_wrapper)
-            data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
+#             data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
             data_result['Judul'] = data_result['Judul'].agg(lambda x: ','.join(map(str, x)))
             data_result['Isi'] = data_result['Isi'].str.lower()
             data_result['Isi'] = data_result['Isi'].apply(remove_mention)
@@ -393,7 +393,7 @@ else:
             data_result['Isi'] = data_result['Isi'].apply(remove_whitespace_multi)
             data_result['Isi'] = data_result['Isi'].apply(remove_single_char)
             data_result['Isi'] = data_result['Isi'].apply(word_tokenize_wrapper)
-            data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
+#             data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
             data_result['Isi'] = data_result['Isi'].agg(lambda x: ','.join(map(str, x)))
             y_pred_judul = model_clickbait.predict(tfidf_clickbait.transform(data_result['Isi'].values))
             y_pred_proba_judul = model_clickbait.predict_proba(tfidf_clickbait.transform(data_result['Isi'].values))
@@ -451,7 +451,7 @@ else:
             data_result['Judul'] = data_result['Judul'].apply(remove_whitespace_multi)
             data_result['Judul'] = data_result['Judul'].apply(remove_single_char)
             data_result['Judul'] = data_result['Judul'].apply(word_tokenize_wrapper)
-            data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
+#             data_result['Judul'] = data_result['Judul'].apply(remove_stopwords)
             data_result['Judul'] = data_result['Judul'].agg(lambda x: ','.join(map(str, x)))
             data_result['Isi'] = data_result['Isi'].str.lower()
             data_result['Isi'] = data_result['Isi'].apply(remove_mention)
@@ -463,7 +463,7 @@ else:
             data_result['Isi'] = data_result['Isi'].apply(remove_whitespace_multi)
             data_result['Isi'] = data_result['Isi'].apply(remove_single_char)
             data_result['Isi'] = data_result['Isi'].apply(word_tokenize_wrapper)
-            data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
+#             data_result['Isi'] = data_result['Isi'].apply(remove_stopwords)
             data_result['Isi'] = data_result['Isi'].agg(lambda x: ','.join(map(str, x)))
             y_pred_judul = model_clickbait.predict(tfidf_clickbait.transform(data_result['Isi'].values))
             y_pred_proba_judul = model_clickbait.predict_proba(tfidf_clickbait.transform(data_result['Isi'].values))
