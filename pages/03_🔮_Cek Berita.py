@@ -51,7 +51,7 @@ def remove_stopwords(words):
 # LOAD MODEL HOAX & CLICKBAIT CLASSIFICATION
 filename_model_hoax = 'model/Model_Final_Hoax.sav'
 filename_tfidf_hoax = 'model/TFIDF_Final_Hoax.pickle'
-filename_model_click = 'model/Model_Final_Clickbait.sav'
+filename_model_click = 'model/Model_Final_Clickbait_NB.sav'
 filename_tfidf_click = 'model/TFIDF_Final_Clickbait.pickle'
 
 @st.experimental_singleton
